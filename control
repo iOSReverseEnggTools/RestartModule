@@ -1,0 +1,9 @@
+Package: com.lizynz.restartmodule
+Name: RestartModule
+Depends: mobilesubstrate, firmware(>=11.0), com.opa334.ccsupport
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Restart module in style iOS
+Maintainer: Lizynz
+Author: Lizynz
+Section: Tweaks
