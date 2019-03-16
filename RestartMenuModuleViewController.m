@@ -10,6 +10,10 @@
     
     [self setTitle:@"Restart"];
     
+    [self addActionWithTitle:@"Respring" glyph:nil handler:^{
+        [self respring];
+    }];
+    
     [self addActionWithTitle:@"Reboot" glyph:nil handler:^{
         pid_t pid;
         int status;
@@ -24,6 +28,15 @@
         const char* args[] = {"killall", "-SEGV", "SpringBoard", NULL};
         posix_spawn(&pid, "/usr/bin/killall", NULL, NULL, (char* const*)args, NULL);
         waitpid(pid, &status, WEXITED);
+    }];
+    
+    [self addActionWithTitle:@"UICache"  glyph:nil handler:^{
+        pid_t pid;
+        int status;
+        const char* args[] = {"uicache", NULL, NULL, NULL};
+        posix_spawn(&pid, "/usr/bin/uicache", NULL, NULL, (char* const*)args, NULL);
+        waitpid(pid, &status, WEXITED);
+        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 20.0, false);
     }];
 }
 
@@ -41,3 +54,4 @@
 }
 
 @end
+
